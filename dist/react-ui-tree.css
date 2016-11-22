@@ -32,7 +32,7 @@
 .m-node .inner {
   position: relative;
   cursor: pointer;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 .m-node .collapse {
   position: absolute;
@@ -44,4 +44,17 @@
 }
 .m-node .caret-down:before {
   content: '\25BE';
+}
+.m-node .bars:before {
+  content: 'x';
+}
+.draggable {
+  position: absolute;
+  left: 6px;
+  padding: 0 6px;
+  line-height: 22px;
+  cursor: move;
+}
+.draggable:hover {
+  color: white;
 }

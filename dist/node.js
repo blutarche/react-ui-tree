@@ -59,6 +59,8 @@ var Node = React.createClass({
     var tree = this.props.tree;
     var index = this.props.index;
     var dragging = this.props.dragging;
+    var extractDrag = this.props.extractDrag;
+    var dragComponent = this.props.dragComponent || React.createElement('span', { className: cx('bars') });
     var node = index.node;
     var styles = {};
 
@@ -69,7 +71,12 @@ var Node = React.createClass({
         }), style: styles },
       React.createElement(
         'div',
-        { className: 'inner', ref: 'inner', onMouseDown: this.handleMouseDown },
+        { className: 'inner', ref: 'inner', onMouseDown: !extractDrag && this.handleMouseDown },
+        React.createElement(
+          'div',
+          { className: 'draggable', onMouseDown: extractDrag && this.handleMouseDown },
+          dragComponent
+        ),
         this.renderCollapse(),
         tree.renderNode(node)
       ),

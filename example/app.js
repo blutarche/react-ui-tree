@@ -42,6 +42,7 @@ var App = React.createClass({
             onChange={this.handleChange}
             isNodeCollapsed={this.isNodeCollapsed}
             renderNode={this.renderNode}
+            //extractDrag
           />
         </div>
         <div className="inspector">

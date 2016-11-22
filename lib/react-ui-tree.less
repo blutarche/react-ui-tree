@@ -30,7 +30,7 @@
   .inner {
     position: relative;
     cursor: pointer;
-    padding-left: 10px;
+    padding-left: 20px;
   }
 
   .collapse {
@@ -45,5 +45,20 @@
 
   .caret-down:before {
     content: '\25BE';
+  }
+
+  .bars:before {
+    content: 'x';
+  }
+}
+
+.draggable {
+  position: absolute;
+  left: 6px;
+  padding: 0 6px;
+  line-height: 22px;
+  cursor: move;
+  &:hover {
+    color: white;
   }
 }

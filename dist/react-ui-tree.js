@@ -47,6 +47,8 @@ module.exports = React.createClass({
   getDraggingDom: function getDraggingDom() {
     var tree = this.state.tree;
     var dragging = this.state.dragging;
+    var extractDrag = this.props.extractDrag;
+    var dragComponent = this.props.dragComponent;
 
     if (dragging && dragging.id) {
       var draggingIndex = tree.getIndex(dragging.id);
@@ -62,7 +64,9 @@ module.exports = React.createClass({
         React.createElement(Node, {
           tree: tree,
           index: draggingIndex,
-          paddingLeft: this.props.paddingLeft
+          paddingLeft: this.props.paddingLeft,
+          extractDrag: extractDrag,
+          dragComponent: dragComponent
         })
       );
     }

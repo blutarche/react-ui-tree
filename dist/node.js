@@ -29,6 +29,8 @@ var Node = React.createClass({
     var index = this.props.index;
     var tree = this.props.tree;
     var dragging = this.props.dragging;
+    var extractDrag = this.props.extractDrag;
+    var dragComponent = this.props.dragComponent;
 
     if (index.children && index.children.length) {
       var childrenStyles = {};
@@ -47,7 +49,9 @@ var Node = React.createClass({
             dragging: dragging,
             paddingLeft: _this.props.paddingLeft,
             onCollapse: _this.props.onCollapse,
-            onDragStart: _this.props.onDragStart
+            onDragStart: _this.props.onDragStart,
+            extractDrag: extractDrag,
+            dragComponent: dragComponent
           });
         })
       );
@@ -63,6 +67,7 @@ var Node = React.createClass({
     var dragComponent = this.props.dragComponent || React.createElement('span', { className: cx('bars') });
     var node = index.node;
     var styles = {};
+    var noop = function noop() {};
 
     return React.createElement(
       'div',
@@ -71,10 +76,10 @@ var Node = React.createClass({
         }), style: styles },
       React.createElement(
         'div',
-        { className: 'inner', ref: 'inner', onMouseDown: !extractDrag && this.handleMouseDown },
-        React.createElement(
+        { className: 'inner', ref: 'inner', onMouseDown: extractDrag ? noop : this.handleMouseDown },
+        extractDrag && React.createElement(
           'div',
-          { className: 'draggable', onMouseDown: extractDrag && this.handleMouseDown },
+          { className: 'draggable', onMouseDown: extractDrag ? this.handleMouseDown : noop },
           dragComponent
         ),
         this.renderCollapse(),
